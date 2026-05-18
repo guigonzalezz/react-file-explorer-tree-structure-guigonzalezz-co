@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import PropTypes from "prop-types";
 import { NODE_TYPES } from "../types/types";
 
@@ -7,7 +7,7 @@ const TreeNode = memo(function TreeNode({
   node,
   level,
   isExpanded,
-  toggleNode,
+  onToggle,
   renderCustomContent,
 }) {
   const isFolder = node.type === NODE_TYPES.FOLDER;
@@ -54,6 +54,7 @@ const TreeNode = memo(function TreeNode({
         style={{
           cursor: isFolder ? "pointer" : "default",
           padding: "4px 8px",
+          paddingLeft: level * 16 + 8,
           display: "flex",
           alignItems: "center",
           gap: 6,
@@ -62,7 +63,7 @@ const TreeNode = memo(function TreeNode({
           transition: "background-color 0.15s",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "red"; // here should be some kinda of grey color
+          e.currentTarget.style.backgroundColor = "#e0e0e0"; // here should be some kinda of grey color
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor = "transparent";

@@ -1,8 +1,10 @@
 import { useState, useCallback } from "react";
 
 // Custom hook to manage expanded/collapsed state per node
-export function useTreeState(iniitialExpandedIds = []) {
-  const [expandedIds] = useState(() => new Set(initialExpandedIds));
+export function useTreeState(initialExpandedIds = []) {
+  const [expandedIds, setExpandedIds] = useState(
+    () => new Set(initialExpandedIds),
+  );
 
   const toggleNode = useCallback((nodeId) => {
     setExpandedIds((prev) => {

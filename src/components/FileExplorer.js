@@ -1,8 +1,11 @@
+import { useCallback } from "react";
+import PropTypes from "prop-types";
 import { mockTreeData } from "../data/mockTreeData";
+import { useTreeState } from "../hooks/useTreeState";
 import TreeNode from "./TreeNode";
 
 export default function FileExplorer({ data, renderCustomContent }) {
-  const treeData = mockTreeData; //data || mockTreeData;
+  const treeData = data || mockTreeData;
   const { isExpanded, toggleNode } = useTreeState();
 
   const stableRenderCustomContent = useCallback(
@@ -26,7 +29,7 @@ export default function FileExplorer({ data, renderCustomContent }) {
         node={treeData}
         level={0}
         isExpanded={isExpanded}
-        toggleNode={toggleNode}
+        onToggle={toggleNode}
         renderCustomContent={renderCustomContent}
       />
     </ul>
